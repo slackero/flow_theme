@@ -5,6 +5,7 @@ production:
   - "less:vendor"
   - "uglify:theme"
   - "uglify:vendor"
+  - "uglify:vendorBootstrapSelectI18N"
   - "uglify:widgets"
 
 development:

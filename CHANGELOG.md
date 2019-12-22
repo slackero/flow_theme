@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - BC Break: block in ``tpl/email/plain/ordershopped.tpl`` renamed from ``email_html_ordershipped_shipmenttrackingurl`` to ``email_plain_ordershipped_shipmenttrackingurl`` [PR-153](https://github.com/OXID-eSales/flow_theme/pull/153)
 - Decoded ``oxconfig`` insert queries in ``setup.sql``
+- Upgraded npm dependencies in `package.json` for the grunt based build process
+- Updated vendor scripts - whenever possible use the related npm package instead of static files:
+  - Bootstrap 3.4.1
+  - bootstrap-select v1.13.12
+  - FontAwesome 4.7.0
+  - PhotoSwipe 4.1.3
 
 ## [3.4.0] - 2019-10-15
 
