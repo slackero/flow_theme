@@ -6,7 +6,7 @@ module.exports = {
                 "node_modules/bootstrap/dist/js/bootstrap.js",
                 "node_modules/bootstrap-select/dist/js/bootstrap-select.js",
                 "build/vendor/jquery-bootstrap-validation/js/jqBootstrapValidation.js",
-                "node_modules/unveil2/src/jquery.unveil2.js",
+                "node_modules/jquery-unveil/jquery.unveil.js",
                 "build/js/main.js"
             ],
             "out/flow/src/js/pages/compare.min.js": "build/js/pages/compare.js",
