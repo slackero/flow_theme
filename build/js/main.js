@@ -263,80 +263,71 @@ $( function ()
         };
         Flow.initEvents();
 
-        function reRenderMainNav()
-        {
-            var $oMainNav = $( '#mainnav' ).find( '.navbar-collapse' ),
-                $oNavList = $( '#navigation' ),
-                $oMoreLinks = $oNavList.find( '.moreLinks' );
+        if (typeof $ox_reRenderMainNav === 'undefined' || $ox_reRenderMainNav === true) {
+            var reRenderMainNav = function() {
+                var $oMainNav = $('#mainnav').find('.navbar-collapse'),
+                    $oNavList = $('#navigation'),
+                    $oMoreLinks = $oNavList.find('.moreLinks');
 
-            // Abbrechen, wenn Fensterbreite <= 767
-            if ( $window.width() <= 755 )
-            {
-                $oMoreLinks.before( $oMoreLinks.find( '> ul > li' ) );
-                $oMoreLinks.remove();
-                return;
-            }
-
-            if ( $oMoreLinks.length )
-            {
-                $oMoreLinks.before( $oMoreLinks.find( '> ul > li' ) );
-            }
-            else
-            {
-                var oMoreLinkElem = document.createElement( 'li' ),
-                    oMoreLinkAElem = document.createElement( 'a' ),
-                    oMoreLinkUlElem = document.createElement( 'ul' );
-
-                oMoreLinkElem.className = 'dropdown moreLinks';
-
-                oMoreLinkAElem.className = 'dropdown-toggle';
-                oMoreLinkAElem.innerHTML = 'Mehr <span class="caret"></span>';
-                oMoreLinkAElem.setAttribute( 'data-toggle', 'dropdown' );
-
-                oMoreLinkUlElem.className = 'dropdown-menu';
-                oMoreLinkUlElem.setAttribute( 'role', 'menu' );
-
-                oMoreLinkElem.appendChild( oMoreLinkAElem );
-                oMoreLinkElem.appendChild( oMoreLinkUlElem );
-
-                $oNavList.append( oMoreLinkElem );
-                $oMoreLinks = $( oMoreLinkElem );
-            }
-
-            var iMainNavWidth = $oMainNav.width(),
-                $oNavItems = $oNavList.find( '> li' ).not( '.moreLinks' ),
-                iNavItemsWidth = 0,
-                aMoreLinkElems = [];
-
-            iMainNavWidth -= $oMoreLinks.width();
-
-            $oNavItems.each( function ()
-                {
-                    var $this = $( this );
-                    iNavItemsWidth += $this.outerWidth();
-
-                    if ( iNavItemsWidth > iMainNavWidth )
-                    {
-                        aMoreLinkElems.push( $this );
-                    }
+                // Abbrechen, wenn Fensterbreite <= 767
+                if ($window.width() <= 755) {
+                    $oMoreLinks.before($oMoreLinks.find('> ul > li'));
+                    $oMoreLinks.remove();
+                    return;
                 }
-            );
 
-            if ( aMoreLinkElems.length )
-            {
-                $oMoreLinks.find( '> ul' ).append( aMoreLinkElems );
-            }
-            else
-            {
-                $oMoreLinks.remove();
-            }
-        }
+                if ($oMoreLinks.length) {
+                    $oMoreLinks.before($oMoreLinks.find('> ul > li'));
+                } else {
+                    var oMoreLinkElem = document.createElement('li'),
+                        oMoreLinkAElem = document.createElement('a'),
+                        oMoreLinkUlElem = document.createElement('ul');
 
-        reRenderMainNav();
-        $window.resize( function ()
-        {
+                    oMoreLinkElem.className = 'dropdown moreLinks';
+
+                    oMoreLinkAElem.className = 'dropdown-toggle';
+                    oMoreLinkAElem.innerHTML = 'Mehr <span class="caret"></span>';
+                    oMoreLinkAElem.setAttribute('data-toggle', 'dropdown');
+
+                    oMoreLinkUlElem.className = 'dropdown-menu';
+                    oMoreLinkUlElem.setAttribute('role', 'menu');
+
+                    oMoreLinkElem.appendChild(oMoreLinkAElem);
+                    oMoreLinkElem.appendChild(oMoreLinkUlElem);
+
+                    $oNavList.append(oMoreLinkElem);
+                    $oMoreLinks = $(oMoreLinkElem);
+                }
+
+                var iMainNavWidth = $oMainNav.width(),
+                    $oNavItems = $oNavList.find('> li').not('.moreLinks'),
+                    iNavItemsWidth = 0,
+                    aMoreLinkElems = [];
+
+                iMainNavWidth -= $oMoreLinks.width();
+
+                $oNavItems.each(function () {
+                        var $this = $(this);
+                        iNavItemsWidth += $this.outerWidth();
+
+                        if (iNavItemsWidth > iMainNavWidth) {
+                            aMoreLinkElems.push($this);
+                        }
+                    }
+                );
+
+                if (aMoreLinkElems.length) {
+                    $oMoreLinks.find('> ul').append(aMoreLinkElems);
+                } else {
+                    $oMoreLinks.remove();
+                }
+            };
+
             reRenderMainNav();
-        } );
+            $window.resize(function () {
+                reRenderMainNav();
+            });
+        }
 
         /* *********************************
          * Warenkorb
